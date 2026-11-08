@@ -116,12 +116,10 @@
           </div>
           <div class="report-card">
             <h3>Pengeluaran per Kategori</h3>
-            <canvas id="chart-expense-pie" height="160"></canvas>
             <div id="expense-breakdown"></div>
           </div>
           <div class="report-card">
             <h3>Pemasukan per Kategori</h3>
-            <canvas id="chart-income-pie" height="160"></canvas>
             <div id="income-breakdown"></div>
           </div>
           <div class="report-card">
@@ -173,7 +171,7 @@
           <button type="button" class="btn-type" data-type="income">Pemasukan</button>
           <button type="button" class="btn-type" data-type="transfer">Transfer</button>
         </div></div>
-        <div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="tx-amount" required min="0" step="100" placeholder="0" /></div>
+        <div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="tx-amount" required min="0" step="0.01" placeholder="0" /></div>
         <div class="form-group" id="group-account"><label>Akun</label><select id="tx-account" required></select></div>
         <div class="form-group" id="group-to-account" style="display:none"><label>Ke Akun</label><select id="tx-to-account"></select></div>
         <div class="form-group" id="group-category"><label>Kategori</label><select id="tx-category" required></select></div>
@@ -190,7 +188,7 @@
       <form id="form-account">
         <input type="hidden" id="acc-id" />
         <div class="form-group"><label>Nama Akun</label><input type="text" id="acc-name" required placeholder="Contoh: Dompet, BCA" /></div>
-        <div class="form-group"><label>Saldo Awal (Rp)</label><input type="number" id="acc-balance" value="0" step="100" /></div>
+        <div class="form-group"><label>Saldo Awal (Rp)</label><input type="number" id="acc-balance" value="0" step="0.01" /></div>
         <div class="form-group"><label>Tipe</label><select id="acc-type"><option value="cash">Tunai</option><option value="bank">Bank</option><option value="ewallet">E-Wallet</option><option value="other">Lainnya</option></select></div>
         <div class="form-group"><label>Warna</label><input type="color" id="acc-color" value="#14b8a6" /></div>
         <div class="form-actions"><button type="button" class="btn btn-secondary" data-close>Batal</button><button type="submit" class="btn btn-primary">Simpan</button></div>
@@ -217,7 +215,7 @@
       <form id="form-recurring">
         <input type="hidden" id="rec-id" />
         <div class="form-group"><label>Jenis</label><select id="rec-type"><option value="expense">Pengeluaran</option><option value="income">Pemasukan</option></select></div>
-        <div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="rec-amount" required min="0" step="100" /></div>
+        <div class="form-group"><label>Jumlah (Rp)</label><input type="number" id="rec-amount" required min="0" step="0.01" /></div>
         <div class="form-group"><label>Akun</label><select id="rec-account" required></select></div>
         <div class="form-group"><label>Kategori</label><select id="rec-category" required></select></div>
         <div class="form-group"><label>Frekuensi</label><select id="rec-freq"><option value="daily">Harian</option><option value="weekly">Mingguan</option><option value="monthly" selected>Bulanan</option><option value="yearly">Tahunan</option></select></div>
@@ -232,8 +230,8 @@
     <div class="modal-content">
       <div class="modal-header"><h2>Atur Budget</h2><button class="btn-close" data-close>&times;</button></div>
       <form id="form-budget">
-        <div class="form-group"><label>Budget Total Bulanan (Rp)</label><input type="number" id="budget-total-input" min="0" step="1000" placeholder="Contoh: 5000000" /></div>
-        <p class="hint" style="margin-bottom:16px">Kosongkan atau 0 = tidak ada batas total. Set juga budget per kategori di bawah.</p>
+        <div class="form-group"><label>Budget Total Bulanan (Rp)</label><input type="number" id="budget-total-input" min="0" step="0.01" placeholder="Contoh: 5000000" /></div>
+        <p class="hint" style="margin-bottom:16px">Kosongkan atau 0 = tidak ada batas total.</p>
         <div id="budget-cat-inputs"></div>
         <div class="form-actions"><button type="button" class="btn btn-secondary" data-close>Batal</button><button type="submit" class="btn btn-primary">Simpan Budget</button></div>
       </form>
@@ -272,12 +270,14 @@
         </div>
         <div class="setting-item">
           <h3>Import CSV</h3>
+          <p>Paling stabil untuk pindah data dari Money Manager.</p>
           <button id="btn-import-csv" class="btn btn-secondary">Import CSV</button>
           <input type="file" id="file-csv" accept=".csv" style="display:none" />
         </div>
         <div class="setting-item">
-          <h3>Import Money Manager</h3>
-          <button id="btn-import-mmbak" class="btn btn-secondary">Import .mmbak</button>
+          <h3>Import Money Manager (.mmbak)</h3>
+          <p>.mmbak = database SQLite. Butuh internet sekali untuk engine. Jika gagal, export CSV dari Money Manager.</p>
+          <button id="btn-import-mmbak" class="btn btn-secondary">Import .mmbak / .sqlite</button>
           <input type="file" id="file-mmbak" accept=".mmbak,.sqlite,.db" style="display:none" />
         </div>
         <div class="setting-item danger">
@@ -286,7 +286,7 @@
         </div>
         <div class="setting-item">
           <h3>Tentang</h3>
-          <p>Keuangan Offline Pro v1.1 — 100% offline.</p>
+          <p>Keuangan Offline Pro v1.2 — desimal + import MM</p>
         </div>
       </div>
     </div>

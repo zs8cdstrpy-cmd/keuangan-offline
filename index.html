@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Keuangan Offline Pro</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" />
@@ -100,7 +102,7 @@
         </div>
         <h3 class="section-title">Budget per Kategori</h3>
         <div id="budget-category-list" class="list"></div>
-        <p class="hint">Atur budget keseluruhan atau per kategori. Progress dari transaksi bulan berjalan.</p>
+        <p class="hint">Atur budget keseluruhan atau per kategori.</p>
       </section>
 
       <section id="tab-stats" class="tab-panel">
@@ -153,7 +155,7 @@
           <h2>Transaksi Berulang</h2>
           <button id="btn-add-recurring" class="btn btn-primary">+ Tambah</button>
         </div>
-        <p class="hint">Transaksi berulang otomatis ditambahkan sesuai jadwal saat aplikasi dibuka.</p>
+        <p class="hint">Transaksi berulang otomatis ditambahkan sesuai jadwal.</p>
         <div id="recurring-list" class="list"></div>
       </section>
     </main>
@@ -263,22 +265,22 @@
       <div class="settings-body">
         <div class="setting-item">
           <h3>Backup & Restore</h3>
-          <p>Data disimpan otomatis di browser.</p>
+          <p>Data disimpan otomatis di browser. Restore dari shortcut HP sudah didukung.</p>
           <button id="btn-backup" class="btn btn-secondary">📥 Download Backup</button>
-          <button id="btn-restore" class="btn btn-secondary">📤 Restore</button>
-          <input type="file" id="file-restore" accept=".json" style="display:none" />
+          <button id="btn-restore" class="btn btn-secondary">📤 Restore JSON</button>
+          <input type="file" id="file-restore" accept=".json,application/json" class="file-input-hidden" />
         </div>
         <div class="setting-item">
           <h3>Import CSV</h3>
-          <p>Paling stabil untuk pindah data dari Money Manager.</p>
+          <p>Paling stabil dari Money Manager (export CSV).</p>
           <button id="btn-import-csv" class="btn btn-secondary">Import CSV</button>
-          <input type="file" id="file-csv" accept=".csv" style="display:none" />
+          <input type="file" id="file-csv" accept=".csv,text/csv" class="file-input-hidden" />
         </div>
         <div class="setting-item">
           <h3>Import Money Manager (.mmbak)</h3>
-          <p>.mmbak = database SQLite. Butuh internet sekali untuk engine. Jika gagal, export CSV dari Money Manager.</p>
-          <button id="btn-import-mmbak" class="btn btn-secondary">Import .mmbak / .sqlite</button>
-          <input type="file" id="file-mmbak" accept=".mmbak,.sqlite,.db" style="display:none" />
+          <p>Jika gagal di shortcut, buka lewat Safari/Chrome biasa, atau pakai CSV/JSON.</p>
+          <button id="btn-import-mmbak" class="btn btn-secondary">Import .mmbak</button>
+          <input type="file" id="file-mmbak" accept=".mmbak,.sqlite,.db" class="file-input-hidden" />
         </div>
         <div class="setting-item danger">
           <h3>Hapus Semua Data</h3>
@@ -286,7 +288,7 @@
         </div>
         <div class="setting-item">
           <h3>Tentang</h3>
-          <p>Keuangan Offline Pro v1.2 — desimal + import MM</p>
+          <p>Keuangan Offline Pro v1.3 — restore shortcut fix</p>
         </div>
       </div>
     </div>
